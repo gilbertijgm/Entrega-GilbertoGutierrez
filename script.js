@@ -90,7 +90,7 @@ if(tratamiento == 1){
 
 //Algoritmo para pagar
 
-alert(`${nombre}Espero te hallas relajado y quedado como nuevo.\nPasa por recepcion para que canceles los tratamientos.`);
+alert(`${nombre} Espero te hallas relajado y quedado como nuevo.\nPasa por recepcion para que canceles los tratamientos.`);
 
 function pagoTotal(tratamientos, precio){
     alert(`Sumamos: ${tratamientos} a tu pago total`);
