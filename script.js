@@ -41,7 +41,7 @@ function selecTratamiento(){
     //obtenemos opcion del usuario
     let opcionTratamiento = parseInt(prompt(selecTrata));
 
-    //individualizamos fecha escogida por el usuario
+    //individualizamos tratamientos escogidos por el usuario
     return TRATAMIENTOS.find(elem => elem.id === opcionTratamiento)
 
 }
@@ -80,7 +80,7 @@ function fechaHora(){
 }
 
 
-
+//esta funcion recibe lo datos del los elementos individualizados
 function mensajeFinal(tratamiento, fecha){
     
     alert(`Se teh agendo el dia ${fecha.dia} a las ${fecha.hora} para realizarte un ${tratamiento.tratamiento}. El costo que debes pagar es de $${tratamiento.precio}.`)
