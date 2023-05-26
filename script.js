@@ -1,4 +1,7 @@
 
+
+
+
 //algoritmo para bienvenida al spa y reservar usando if else
 alert("Bienvenidos a mi Spa");
 
@@ -13,120 +16,80 @@ if(cliente == "si"){
     alert(`Bienvenido ${nombre} es un placer conocerte, tenemos muchos tratamientos para que te sientas como nuev@`)
 }
 
-alert("Estos son los tratamientos:\n 1.- Masages\n  2.- Tratamiento Facial\n  3.- Tratamiento Corporal\n");
 
-let tratamiento = parseInt(prompt("Cual deseas realizarte?\n 1.- Masages  2.- Tratamiento Facial  3.- Tratamiento Corporal"));
+//Algoritmo para elegir tratamiento
+class Tratamientos{
+    constructor(id,tratamiento,precio){
+        this.id = id,
+        this.tratamiento = tratamiento,
+        this.precio = precio
+    }
+}
+
+const tratamiento1 = new Tratamientos(1,"Masages", 5000);
+const tratamiento2 = new Tratamientos(2,"Tratamiento Facial", 8000);
+const tratamiento3 = new Tratamientos(3,"Tratamiento Corporal", 12000);
+
+const TRATAMIENTOS = [tratamiento1,tratamiento2,tratamiento3];
+
+function selecTratamiento(){
+    let selecTrata = "Estos son los tratamientos, Cual deseas realizarte?: \n "
+    //mostramos la informacion de los tratamientos disponibles al usuario
+    TRATAMIENTOS.forEach(e => {
+        selecTrata += `${e.id} - ${e.tratamiento} - $${e.precio} \n`
+    })
+    //obtenemos opcion del usuario
+    let opcionTratamiento = parseInt(prompt(selecTrata));
+
+    //individualizamos fecha escogida por el usuario
+    return TRATAMIENTOS.find(elem => elem.id === opcionTratamiento)
+
+}
 
 
-if(tratamiento == 1){
-  
-    let dia = prompt("Elige dia de la semana para el tratamiento").toLocaleLowerCase();
-
-    if(dia == "lunes"){
-
-        let  hora = prompt("Elige la hora que desees: ");
-        alert(`Tu tratamiento de Masages sera el dia ${dia} a las ${hora}, en caso de cualquier imprevisto nuestro personal te llamara`);
-
-    }else if(dia == "miercoles"){
-
-        hora = prompt("Elige la hora que desees: ");
-
-        alert(`Tu tratamiento de Masages sera el dia ${dia} a las ${hora}, en caso de cualquier imprevisto nuestro personal te llamara`);
-
-    }else if(dia == "viernes"){
+//algoritnmo para elegir dia y hora del tratamiento
+class Agenda{
+    constructor(id,dia, hora){
+        this.id = id
+        this.dia = dia,
+        this.hora = hora
         
-        hora = prompt("Elige la hora que desees: ");
-
-        alert(`Tu tratamiento de Masages sera el dia ${dia} a las ${hora}, en caso de cualquier imprevisto nuestro personal te llamara`);
-    }else{
-        alert(`No hay turnos disponibles para el ${dia}`);
     }
+}
 
-}else if(tratamiento == 2){
+const agenda1 = new Agenda(1,"Lunes","10:00");
+const agenda2 = new Agenda(2,"Martes","12:00");
+const agenda3 = new Agenda(3,"Miercoles","14:00");
+const agenda4 = new Agenda(4,"Jueves","16:00");
+const agenda5 = new Agenda(5,"Viernes","18:00");
+const agenda6 = new Agenda(6,"Sabado","20:00");
 
-    let dia = prompt("Elige dia de la semana para el tratamiento").toLocaleLowerCase();
+const agendas = [agenda1,agenda2,agenda3,agenda4,agenda5,agenda6];
 
-    if(dia == "lunes"){
+function fechaHora(){
+    let fechas = "Estas son las fechas y horarios disponibles, seleccione el dia segun su id: \n";
+    //mostramos la informacion de las fechas disponibles al usurio
+    agendas.forEach(e => {
+        fechas += `${e.id} - ${e.dia} - ${e.hora} \n`
+    })
+    //obtenemos opcion del usuario
+    let opcionFecha = parseInt(prompt(fechas));
 
-          hora = prompt("Elige la hora que desees: ");
+    //individualizamos fecha escogida por el usuario
+    return agendas.find(elem => elem.id === opcionFecha)
+}
 
-        alert(`Tu Tratamiento Facial sera el dia ${dia} a las ${hora}, en caso de cualquier imprevisto nuestro personal te llamara`);
-    }else if(dia == "miercoles"){
-          hora = prompt("Elige la hora que desees: ");
 
-        alert(`Tu Tratamiento Facial sera el dia ${dia} a las ${hora}, en caso de cualquier imprevisto nuestro personal te llamara`);
-    }else if(dia == "viernes"){
-          hora = prompt("Elige la hora que desees: ");
 
-        alert(`Tu Tratamiento Facial sera el dia ${dia} a las ${hora}, en caso de cualquier imprevisto nuestro personal te llamara`);
-    }else{
-        alert(`No hay turnos disponibles para el ${dia}`);
-    }
-
-}else if(tratamiento == 3){
-
-    let dia = prompt("Elige dia de la semana para el tratamiento").toLocaleLowerCase();
-
-    if(dia == "lunes"){
-          hora = prompt("Elige la hora que desees: ");
-
-        alert(`Tu Tratamiento Corporal sera el dia ${dia} a las ${hora}, en caso de cualquier imprevisto nuestro personal te llamara`);
-    }else if(dia == "miercoles"){
-          hora = prompt("Elige la hora que desees: ");
-
-        alert(`Tu Tratamiento Corporal sera el dia ${dia} a las ${hora}, en caso de cualquier imprevisto nuestro personal te llamara`);
-    }else if(dia == "viernes"){
-          hora = prompt("Elige la hora que desees: ");
-
-        alert(`Tu Tratamiento Corporal sera el dia ${dia} a las ${hora}, en caso de cualquier imprevisto nuestro personal te llamara`);
-    }else{
-        alert(`No hay turnos disponibles para el ${dia}`);
-    }
+function mensajeFinal(tratamiento, fecha){
     
-}else{
-    alert("Opcion Incorrecta");
+    alert(`Se teh agendo el dia ${fecha.dia} a las ${fecha.hora} para realizarte un ${tratamiento.tratamiento}. El costo que debes pagar es de $${tratamiento.precio}.`)
 }
 
+const tratamientoSeleccionada = selecTratamiento();
+const fechaSeleccionada = fechaHora();
+mensajeFinal(tratamientoSeleccionada, fechaSeleccionada);
 
-//Algoritmo para pagar
-
-alert(`${nombre} Espero te hallas relajado y quedado como nuevo.\nPasa por recepcion para que canceles los tratamientos.`);
-
-function pagoTotal(tratamientos, precio){
-    alert(`Sumamos: ${tratamientos} a tu pago total`);
-
-    itemTratamiento += `${tratamientos} \n`;
-    precioTramiento += precio;
-}
-
-let tratamientoElegido = parseInt(prompt("Me indicas los tratamientos que te realizaste?\n 1. Masage -> $3000\n 2. Tratamiento Facil -> $5000\n 3. Tratamiento Corporal -> $8000\n 4. Terminar pago."));
-
-let itemTratamiento = "";
-let precioTramiento = 0;
+alert("¡Te esperamos con todo el entusiasmo para hacerte sentir como nuevo!");
 
 
-while(tratamientoElegido != 4){
-    switch(tratamientoElegido){
-        case 1:
-
-            pagoTotal("Masage", 3000);
-        break;
-
-        case 2:
-            pagoTotal("Tratamiento Facial", 5000);
-        break;
-
-        case 3:
-            pagoTotal("Tratamiento Corporal", 8000);
-        break;
-
-        default:
-            alert("opcion incorrecta");
-          
-    }
-
-    tratamientoElegido = parseInt(prompt("Otro tratamientos adicional?\n 1. Masage -> $3000\n 2. Tratamiento Facil -> $5000\n 3. Tratamiento Corporal -> $8000\n 4. Terminar pago."));
-
-}
-
-alert(`Tus tratamiento son:\n ${itemTratamiento}\n y el costo a pagar es de $${precioTramiento}`);
